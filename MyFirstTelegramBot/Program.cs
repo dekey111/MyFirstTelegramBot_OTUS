@@ -3,7 +3,6 @@ using MyFirstTelegramBot;
 using MyFirstTelegramBot.Models;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 
@@ -20,10 +19,11 @@ var cts = new CancellationTokenSource();
 var botClient = new TelegramBotClient(config.Token);
 var receiverOptions = new ReceiverOptions
 {
-AllowedUpdates = [UpdateType.Message],
-DropPendingUpdates = true
+    AllowedUpdates = [UpdateType.Message],
+    DropPendingUpdates = true
 };
-var handler = new UpdateHandler(); 
+
+var handler = new UpdateHandler();
 handler.OnHandleUpdateStarted += Handler_OnHandleUpdateStarted;
 handler.OnHandleUpdateEnd += Handler_OnHandleUpdateEnd;
 handler.RegisterHandler(LogMessage);
