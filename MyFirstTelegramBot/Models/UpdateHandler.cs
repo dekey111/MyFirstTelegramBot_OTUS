@@ -42,14 +42,14 @@ namespace MyFirstTelegramBot.Models
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"Случайный факт о кошках: {catFact.Fact}", cancellationToken: cancellationToken);
             }
 
-            OnHandleUpdateStarted?.Invoke(this, message);
+            OnHandleUpdateStarted.Invoke(this, message);
 
             var info = $"{update.Message.From.Username}: {message}";
             taken?.Invoke(info);
 
             await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Сообщение успешно принято", cancellationToken: cancellationToken);
 
-            OnHandleUpdateEnd?.Invoke(this, message);
+            OnHandleUpdateEnd.Invoke(this, message);
         }
 
         private static async Task<CatFactDto> GetRandomCatFact(CancellationToken cancellationToken)
